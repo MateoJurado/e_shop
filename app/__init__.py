@@ -13,8 +13,10 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # Modelos
-    from app.models import Usuario
+    # ════════════════════════════════════════════════════════════
+    # MODELOS CONFIGURADOS EN EL FACTORY (PASO 4)
+    # ════════════════════════════════════════════════════════════
+    from app.models import Usuario, Categoria, Producto, Pedido, DetallePedido
 
     # Blueprints
     from app.blueprints.public import public_bp
