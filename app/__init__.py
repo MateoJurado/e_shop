@@ -1,10 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_login import LoginManager
 from app.config import Config
 
 db = SQLAlchemy()
 migrate = Migrate()
+login_manager= LoginManager()
 
 def create_app():
     app = Flask(__name__)
@@ -12,7 +14,12 @@ def create_app():
     
     db.init_app(app)
     migrate.init_app(app, db)
-
+    login_manager.init_app(app)
+    
+    #Configuaraciones de LoginManager
+    login_manager.login_view='auth.login'
+    login_manager.login_message='inicia sesiín para continuar'
+    login_manager.login_message_category='warning'
     # ════════════════════════════════════════════════════════════
     # MODELOS CONFIGURADOS EN EL FACTORY (PASO 4)
     # ════════════════════════════════════════════════════════════
